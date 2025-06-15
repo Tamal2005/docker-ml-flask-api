@@ -1,8 +1,0 @@
-__pycache__/
-*.pkl
-*.zip
-*.csv
-venv/
-.idea/
-.DS_Store
-*.log
