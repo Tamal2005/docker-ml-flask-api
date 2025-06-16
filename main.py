@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import joblib
 import re
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 import numpy as np
@@ -12,6 +13,7 @@ import sys
 
 sys.stdout.reconfigure(line_buffering=True)
 
+nltk.download('stopwords')
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -58,7 +60,6 @@ def predict_news():
         cleaned_text = stemming(data.get("title", ""))
         
         vector_input = vectorizer.transform([cleaned_text])
-        
         prediction = lr.predict(vector_input)
 
         result = "Fake News" if prediction[0] == 1 else "Real News"
